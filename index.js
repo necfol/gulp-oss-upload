@@ -48,7 +48,7 @@ function gulpOssUpload(options) {
 
         client.put(objectName, file.contents).then(function(result) {
             gutil.log(gutil.colors.cyan('put success'), result.name);
-            cb(null, file);
+            cb(null, {[file.relative]: result.url});
             return result;
         }).catch(function(err) {
             cb(new gutil.PluginError(PLUGIN_NAME, 'ali-oss Error: ' + err.message));
